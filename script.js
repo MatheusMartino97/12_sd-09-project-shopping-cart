@@ -45,7 +45,7 @@ async function updatePrice() {
     currentPrice += parseFloat(product.id);
   });
 
-  const result = (Math.round(currentPrice * 100) / 100);
+  const result = (Math.round(currentPrice * 100) / 100).toFixed(2);
 
   return result === '0.00' ? '0' : result;
 }
@@ -54,11 +54,7 @@ async function asyncUpdatePrice() {
     const totalPrice = await updatePrice();
     const totalPriceSpan = document.querySelector('.total-price');
 
-    if (parseFloat(totalPrice) === Math.round(parseFloat(totalPrice))) {
-      totalPriceSpan.innerText = Math.round(parseFloat(totalPrice));
-    } else {
-      totalPriceSpan.innerText = totalPrice;
-    }
+    totalPriceSpan.innerText = totalPrice;
   } catch (error) {
     window.alert(error);
   }
@@ -76,7 +72,7 @@ function removeItem(event) {
 function createCartItemElement({ sku, name, salePrice }) {
   const li = document.createElement('li');
   li.className = 'cart__item';
-  li.innerText = `SKU: ${sku} | NAME: ${name} | PRICE: $${salePrice}`;
+  li.innerText = `SKU: ${sku} | NAME: ${name} | PRICE: $${salePrice.toFixed(2)}`;
   li.addEventListener('click', function cartItemClickListener() {
     const cartItemsOrderedList = document.querySelector('ol.cart__items');
 
