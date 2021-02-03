@@ -97,3 +97,10 @@ body {
 li , button {
   cursor: pointer;
 }
+
+.loading {
+  font-size: x-large;
+  margin: auto;
+  display: flex;
+  justify-content: space-around;
+}
