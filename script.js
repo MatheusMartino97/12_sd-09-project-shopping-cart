@@ -70,6 +70,8 @@ async function asyncUpdatePrice() {
       } else if (parseFloat(totalPrice)) {
         HTMLClass = 'is-green'
         diffSpan.innerText = ''
+      } else if (!parseFloat(totalPrice)) {
+        diffSpan.innerText = ''
       }
     }
 
