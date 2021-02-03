@@ -51,10 +51,24 @@ async function updatePrice() {
 }
 async function asyncUpdatePrice() {
   try {
+    const limitCost = document.querySelector('#limit-cost')
     const totalPrice = await updatePrice();
     const totalPriceSpan = document.querySelector('.total-price');
+    let HTMLElement = 'span'
+    let HTMLClass = ''
 
-    totalPriceSpan.innerText = totalPrice;
+    console.log()
+
+    if (limitCost.value) {
+      if (parseFloat(totalPrice) > parseFloat(limitCost.value)) {
+        HTMLElement = 'em'
+        HTMLClass = 'is-red'
+      } else if (parseFloat(totalPrice)) {
+        HTMLClass = 'is-green'
+      }
+    }
+
+    totalPriceSpan.innerHTML = `<${HTMLElement} class='${HTMLClass}'>${totalPrice}</${HTMLElement}>`;
   } catch (error) {
     window.alert(error);
   }
@@ -63,7 +77,7 @@ async function asyncUpdatePrice() {
 }
 
 function removeItem(event) {
-  const cartItemsOrderedList = document.querySelector('ol.cart__items');
+  const cartItemsOrderedList = document.querySelector('ul.cart__items');
 
   cartItemsOrderedList.removeChild(event.target);
   asyncUpdatePrice();
@@ -72,9 +86,9 @@ function removeItem(event) {
 function createCartItemElement({ sku, name, salePrice }) {
   const li = document.createElement('li');
   li.className = 'cart__item';
-  li.innerText = `SKU: ${sku} | NAME: ${name} | PRICE: $${salePrice.toFixed(2)}`;
+  li.innerHTML = `SKU: ${sku} | NAME: ${name} | PRICE: $${salePrice.toFixed(2)}`;
   li.addEventListener('click', function cartItemClickListener() {
-    const cartItemsOrderedList = document.querySelector('ol.cart__items');
+    const cartItemsOrderedList = document.querySelector('ul.cart__items');
 
     cartItemsOrderedList.addEventListener('click', removeItem);
   });
@@ -193,7 +207,7 @@ function listenToSearchIpt() {
 }
 
 function listenToCartItemsOrderedList() {
-  const cartItemsOrderedList = document.querySelector('ol.cart__items');
+  const cartItemsOrderedList = document.querySelector('ul.cart__items');
 
 
   cartItemsOrderedList.addEventListener('click', removeItem);
@@ -208,6 +222,22 @@ function loadLocalStorage() {
   }
 }
 
+function listenToApplyBtn() {
+  const applyButton = document.querySelector('.apply')
+
+  applyButton.addEventListener('click', asyncUpdatePrice)
+}
+
+function listenToLimitCostipt() {
+  const limitCostIpt = document.querySelector('#limit-cost')
+
+  limitCostIpt.addEventListener('keypress', (event) => {
+    if (event.keyCode === 13) {
+      asyncUpdatePrice()
+    }
+  })
+}
+
 window.onload = function onload() {
   loadLocalStorage();
   fetchAPI('computador');
@@ -216,4 +246,6 @@ window.onload = function onload() {
   listenToSearchBtn();
   listenToSearchIpt();
   listenToCartItemsOrderedList();
+  listenToApplyBtn()
+  listenToLimitCostipt()
 };

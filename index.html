@@ -10,18 +10,25 @@
   </head>
 
   <body>
+    <header>
+      <div class="search-container">
+        <input id="search-ipt" class="search-ipt" type="text" placeholder="Buscar produtos">
+        <button id="search-btn" class="search-btn"><img src="magnifying-glass-1778493-1515829.png" alt="Lupa"></button>
+      </div>
+      <div class="limit-cost">
+        <input id="limit-cost" type="number" placeholder="Custo máximo desejado" min="0">
+        <button class="apply">Aplicar</button>
+      </div>
+    </header>
     <section class="container">
       <!-- <span class="loading">loading...</span> -->
       <section class="items">
       </section>
       <section class="cart">
-        <div class="search-container">
-          <input id="search-ipt" class="search-ipt" type="text" placeholder="Buscar produtos">
-          <button id="search-btn" class="search-btn">Pesquisar</button>
-        </div>
+        
         <span class="cart__title">Carrinho de compras</span>
         <button class="empty-cart">Esvaziar carrinho</button>
-        <ol class="cart__items"></ol>
+        <ul class="cart__items"></ul>
         <span>Preço total: $<span class="total-price">0</span></span>
       </section>
     </section>
