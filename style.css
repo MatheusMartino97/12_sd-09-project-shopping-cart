@@ -90,7 +90,7 @@ header {
   background-color: #fff;
   border-radius: 4px;
   box-shadow: 0 1px 1px 0 rgb(0, 0, 0, 10%);
-  margin: 5px auto;
+  margin: 5px 20px;
   height: fit-content;
   padding: 10px;
 
@@ -178,4 +178,10 @@ header img, .apply {
 
 .is-red {
   color: red;
+}
+
+.diff-container {
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
 }

@@ -51,6 +51,7 @@ async function updatePrice() {
 }
 async function asyncUpdatePrice() {
   try {
+    const diffSpan = document.querySelector('.diff')
     const limitCost = document.querySelector('#limit-cost')
     const totalPrice = await updatePrice();
     const totalPriceSpan = document.querySelector('.total-price');
@@ -61,10 +62,14 @@ async function asyncUpdatePrice() {
 
     if (limitCost.value) {
       if (parseFloat(totalPrice) > parseFloat(limitCost.value)) {
+        const diff = parseFloat(totalPrice) - parseFloat(limitCost.value)
+
+        diffSpan.innerHTML = `Você excedeu $<em class='is-red'>${parseFloat(Math.round(diff * 100) / 100).toFixed(2)}</em> do limite de gasto!`
         HTMLElement = 'em'
         HTMLClass = 'is-red'
       } else if (parseFloat(totalPrice)) {
         HTMLClass = 'is-green'
+        diffSpan.innerText = ''
       }
     }
 
@@ -161,9 +166,11 @@ function fetchAPI(term) {
 function clearList() {
   const cartItemsList = document.querySelector('.cart__items');
   const totalPrice = document.querySelector('.total-price');
+  const diffSpan = document.querySelector('.diff')
 
   cartItemsList.innerHTML = '';
   totalPrice.innerText = 0;
+  diffSpan.innerText = ''
 
   saveAtTheLocalStorage();
 }
