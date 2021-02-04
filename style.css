@@ -119,6 +119,7 @@ header {
 
 .search-btn, .apply {
   min-height: 100%;
+  opacity: 50%;
   border: none;
   border-left: 2px solid #9c9c9c;
   background-color: inherit;
@@ -132,7 +133,6 @@ header {
 .limit-cost {
   display: flex;
   justify-content: space-between;
-  border: 1px solid blue;
   height: 23px;
   padding: 9px 0 9px 15px;
   background-color: #fff;
@@ -141,6 +141,17 @@ header {
 .limit-cost input{
   border: none;
 }
+
+.limit-cost , .search-container {
+  border: 2px solid #9c9c9c;
+  border-radius: 4px;
+}
+
+#limit-cost:focus , .search-ipt:focus , button {
+  border: none;
+  outline: none;
+}
+
 
 li , button {
   cursor: pointer;
@@ -168,7 +179,7 @@ header img {
   width: 18px;
 }
 
-header img, .apply {
+header img {
   opacity: 50%;
 }
 

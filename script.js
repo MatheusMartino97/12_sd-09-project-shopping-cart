@@ -231,10 +231,20 @@ function loadLocalStorage() {
   }
 }
 
+function alertMaxCost() {
+  const searchInput = document.querySelector('#limit-cost')
+  const formatedPrice = parseFloat(searchInput.value).toFixed(2)
+
+  if (searchInput.value) {
+    window.alert(`O custo máximo da compra foi definido para $${formatedPrice}.`)
+  }
+}
+
 function listenToApplyBtn() {
   const applyButton = document.querySelector('.apply')
 
   applyButton.addEventListener('click', asyncUpdatePrice)
+  applyButton.addEventListener('click', alertMaxCost)
 }
 
 function listenToLimitCostipt() {
@@ -243,6 +253,7 @@ function listenToLimitCostipt() {
   limitCostIpt.addEventListener('keypress', (event) => {
     if (event.keyCode === 13) {
       asyncUpdatePrice()
+      alertMaxCost()
     }
   })
 }
