@@ -60,7 +60,7 @@ async function asyncUpdatePrice() {
 
     console.log()
 
-    if (limitCost.value) {
+    if (limitCost.value != false) {
       if (parseFloat(totalPrice) > parseFloat(limitCost.value)) {
         const diff = parseFloat(totalPrice) - parseFloat(limitCost.value)
 
