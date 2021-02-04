@@ -75,6 +75,10 @@ async function asyncUpdatePrice() {
       }
     }
 
+    if (parseFloat(totalPrice) === 0 && !limitCost.value) {
+      diffSpan.innerText = ''
+    }
+
     totalPriceSpan.innerHTML = `<${HTMLElement} class='${HTMLClass}'>${totalPrice}</${HTMLElement}>`;
   } catch (error) {
     window.alert(error);
