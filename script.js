@@ -239,7 +239,7 @@ function alertMaxCost() {
   const searchInput = document.querySelector('#limit-cost')
   const formatedPrice = parseFloat(searchInput.value).toFixed(2)
 
-  if (searchInput.value) {
+  if (searchInput.value != false) {
     window.alert(`O custo máximo da compra foi definido para $${formatedPrice}.`)
   }
 }
